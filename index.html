@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundations of Machine Learning - Fall 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: #003262;
+            color: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .nav {
+            background: #FDB515;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            padding: 0 2rem;
+        }
+
+        .nav a {
+            color: #003262;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav a:hover, .nav a.active {
+            background: rgba(0, 50, 98, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #003262;
+        }
+
+        .info-card h3 {
+            color: #003262;
+            margin-bottom: 1rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+        }
+
+        .info-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-card li:last-child {
+            border-bottom: none;
+        }
+
+        .section {
+            margin: 3rem 0;
+        }
+
+        .section h2 {
+            color: #003262;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #FDB515;
+        }
+
+        .goals-list {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .goals-list ol {
+            margin-left: 1.5rem;
+        }
+
+        .goals-list li {
+            margin: 1rem 0;
+        }
+
+        .lecture-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .lecture-table th {
+            background: #003262;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .lecture-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .lecture-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .lecture-table a {
+            color: #003262;
+            text-decoration: none;
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+
+        .lecture-table a:hover {
+            color: #FDB515;
+            text-decoration: underline;
+        }
+
+        .resources-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .announcement {
+            background: #fff3cd;
+            border-left: 4px solid #FDB515;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .footer {
+            background: #003262;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .important {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .lecture-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>Foundations of Machine Learning</h1>
+            <p>Fall 2025 | Fridays | 2150 Shattuck Ave., Berkeley, CA</p>
+        </div>
+    </div>
+
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#home" class="nav-link active" onclick="showPage('home')">Home</a>
+            <a href="#lectures" class="nav-link" onclick="showPage('lectures')">Lectures</a>
+            <a href="#resources" class="nav-link" onclick="showPage('resources')">Resources</a>
+            <a href="#staff" class="nav-link" onclick="showPage('staff')">Staff</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- HOME PAGE -->
+        <div id="home" class="page active">
+            <div class="announcement">
+                <strong>📢 Welcome!</strong> Classes begin October 10, 2025. Check Canvas/Google Classroom for Zoom links and materials.
+            </div>
+
+            <section class="section">
+                <h2>Course Overview</h2>
+                <p>This 8-week course provides an introduction to Artificial Intelligence (AI) and Machine Learning (ML) at a high-school level, combining foundational intuition and hands-on critical thinking for students interested in machine learning applications. Through engaging visual learning tools and interactive demonstrations, students will explore key topics including data collection, supervised and unsupervised learning, and real-world applications of deep learning.</p>
+            </section>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📅 Course Information</h3>
+                    <ul>
+                        <li><strong>Time:</strong> Fridays (Oct 10 - Dec 5, 2025)</li>
+                        <li><strong>Location:</strong> 2150 Shattuck Ave., Berkeley, CA 94704</li>
+                        <li><strong>Checkout:</strong> 5:20 - 5:40 PM</li>
+                        <li><strong>Prerequisites:</strong> Pre-Calculus, Geometry (Calculus AB helpful but not required)</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>✅ Passing Requirements</h3>
+                    <ul>
+                        <li>Attend all lectures</li>
+                        <li>Complete homework assignments (graded on completion)</li>
+                        <li>Contribute meaningfully to group project</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>💻 Technology</h3>
+                    <ul>
+                        <li>Computer for homework and projects</li>
+                        <li>Pen and paper for assignments</li>
+                        <li>Canvas/Google Classroom for submissions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <section class="section">
+                <h2>Learning Goals</h2>
+                <div class="goals-list">
+                    <ol>
+                        <li><strong>Understand the Foundations of AI and ML</strong> - Define AI, ML, and Deep Learning, and explore their real-world applications</li>
+                        <li><strong>Gain Intro to Core Mathematical Concepts</strong> - Understand mathematical principles and optimization techniques in ML</li>
+                        <li><strong>Foster Collaboration and Teamwork</strong> - Work in teams to design and present AI/ML projects</li>
+                        <li><strong>Bring Intuition into Mathematics</strong> - Foster creativity to solve problems in your communities (most important goal!)</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Group Project</h2>
+                <p>In the final weeks, you'll work on a collaborative group project. Choose from:</p>
+                <div class="goals-list">
+                    <ul style="list-style: disc; margin-left: 2rem;">
+                        <li><strong>Teach a ML Topic:</strong> Present on a machine learning topic not covered in class</li>
+                        <li><strong>Study ChatGPT:</strong> Explore and analyze ChatGPT or similar AI systems</li>
+                        <li><strong>Student-Proposed Project:</strong> Propose your own project (requires instructor approval)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="important">
+                <strong>📝 Homework Policy:</strong> Assignments are designed to be fun and shouldn't take more than an hour. Graded on completion, not correctness!
+            </div>
+        </div>
+
+        <!-- LECTURES PAGE -->
+        <div id="lectures" class="page">
+            <section class="section">
+                <h2>Weekly Schedule</h2>
+                <p>All lectures are in-person. Attendance at all sessions is required for certificate completion.</p>
+                
+                <table class="lecture-table">
+                    <thead>
+                        <tr>
+                            <th>Week</th>
+                            <th>Topic</th>
+                            <th>Materials</th>
+                            <th>Homework</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong><br>Oct 10</td>
+                            <td>
+                                <strong>Introduction – Goals, Data & Decision Making</strong><br>
+                                <small>Lecture: Intro to ML, course goals<br>
+                                Discussion: Math Review, "What can we do with lines?"</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Discussion post & Regression HW</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong><br>Oct 17</td>
+                            <td>
+                                <strong>Classification I – Binary & Linear Classifiers</strong><br>
+                                <small>Lecture: Binary classification, linear classifiers<br>
+                                Discussion: Decision Trees & Multiclass Classification</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Build your own Decision Tree(s)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong><br>Oct 24</td>
+                            <td>
+                                <strong>Classification II – Neural Networks & ReLU</strong><br>
+                                <small>Lecture: Neural Networks, ReLU activation<br>
+                                Discussion: Model building, feature selection</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Compare NNs to Decision Trees</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong><br>Oct 31</td>
+                            <td>
+                                <strong>Linear Regression – Setup & Limitations</strong><br>
+                                <small>Lecture: Linear regression setup<br>
+                                Discussion: Overfitting and Loss Functions</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Analyze results using Desmos</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5</strong><br>Nov 7</td>
+                            <td>
+                                <strong>Clustering – Unsupervised Learning</strong><br>
+                                <small>Lecture: Clustering basics<br>
+                                Discussion: Project Specs review</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Clustering Labubu's</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6</strong><br>Nov 14</td>
+                            <td>
+                                <strong>Guest Lecture / Fun Topic</strong><br>
+                                <small>Special session with guest speaker</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Work on project</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7</strong><br>Nov 21</td>
+                            <td>
+                                <strong>ML in Context – Degrees, Ethics & Safety</strong><br>
+                                <small>Lecture: ML degrees and careers<br>
+                                Discussion: Ethics, alignment, deepfakes</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Continue project (Jailbreaking GPT)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8</strong><br>Dec 5</td>
+                            <td>
+                                <strong>Project Presentations / LLMs</strong><br>
+                                <small>Lecture: Project presentations<br>
+                                Discussion: How to make use of ChatGPT?</small>
+                            </td>
+                            <td class="resources-links">
+                                <a href="#">Slides</a>
+                                <a href="#">Notes</a>
+                                <a href="#">Recording</a>
+                            </td>
+                            <td>Done! 🎉</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="section">
+                <h2>Course Topics Covered</h2>
+                <div class="goals-list">
+                    <ul style="list-style: disc; margin-left: 2rem; column-count: 2;">
+                        <li>Converting Data to Features</li>
+                        <li>Feature Selection</li>
+                        <li>Linear Classifiers</li>
+                        <li>Decision Trees</li>
+                        <li>Neural Networks</li>
+                        <li>Activation Functions</li>
+                        <li>Linear Regression</li>
+                        <li>Loss Functions</li>
+                        <li>Overfitting</li>
+                        <li>Clustering</li>
+                        <li>Ethics and AI Safety</li>
+                        <li>Understanding Probabilities*</li>
+                        <li>Support Vector Machines*</li>
+                        <li>Logistic Regression*</li>
+                        <li>Large Language Models*</li>
+                    </ul>
+                    <p style="margin-top: 1rem;"><small>* Topics marked with asterisk may be adjusted based on student feedback</small></p>
+                </div>
+            </section>
+        </div>
+
+        <!-- RESOURCES PAGE -->
+        <div id="resources" class="page">
+            <section class="section">
+                <h2>Course Resources</h2>
+                
+                <div class="info-card" style="margin: 1rem 0;">
+                    <h3>📚 Online Platforms</h3>
+                    <ul>
+                        <li><a href="#">Canvas</a> - Submit homework and access materials</li>
+                        <li><a href="#">Google Classroom</a> - Alternative submission platform</li>
+                        <li><a href="#">Zoom Links</a> - Virtual office hours and discussions</li>
+                    </ul>
+                </div>
+
+                <div class="info-card" style="margin: 1rem 0;">
+                    <h3>🔧 Tools We'll Use</h3>
+                    <ul>
+                        <li><a href="https://www.desmos.com/calculator" target="_blank">Desmos</a> - Interactive graphing for regression analysis</li>
+                        <li>Pen & Paper - Most assignments are hands-on!</li>
+                        <li>Your creativity - The most important tool</li>
+                    </ul>
+                </div>
+
+                <div class="info-card" style="margin: 1rem 0;">
+                    <h3>📖 Additional Learning Materials</h3>
+                    <ul>
+                        <li><a href="#">Course Notes Repository</a></li>
+                        <li><a href="#">Supplementary Reading List</a></li>
+                        <li><a href="#">Practice Problems</a></li>
+                        <li><a href="#">Project Ideas & Examples</a></li>
+                    </ul>
+                </div>
+
+                <div class="info-card" style="margin: 1rem 0;">
+                    <h3>🎥 Lecture Recordings</h3>
+                    <ul>
+                        <li><a href="#">All Recordings Playlist</a></li>
+                        <li>Recordings posted within 24 hours of each lecture</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!-- STAFF PAGE -->
+        <div id="staff" class="page">
+            <section class="section">
+                <h2>Course Staff</h2>
+                
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Lecture/Discussion Instructors</h3>
+                        <ul>
+                            <li>Andrew Chan</li>
+                            <li>Kenny Wongchamcharoen</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Project Instructor</h3>
+                        <ul>
+                            <li>Samantha Lee</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Faculty Advisor</h3>
+                        <ul>
+                            <li><a href="mailto:kerger@berkeley.edu">kerger@berkeley.edu</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="important" style="margin-top: 2rem;">
+                    <strong>📧 Contact Policy:</strong> Please contact the Lecture/Discussion/Project Instructors for any course-related questions.
+                </div>
+
+                <div class="info-card" style="margin-top: 2rem;">
+                    <h3>⏰ Office Hours</h3>
+                    <p>TBA - Will be posted on Canvas/Google Classroom</p>
+                    <p style="margin-top: 1rem;">Join your instructors and peers to discuss course material, ask questions, or just chat! Even if you don't have questions, feel free to join and listen in.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Foundations of Machine Learning - Fall 2025</p>
+        <p>2150 Shattuck Ave., Berkeley, CA 94704</p>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Add active class to clicked nav link
+            event.target.classList.add('active');
+            
+            // Update URL hash without scrolling
+            history.pushState(null, null, '#' + pageId);
+        }
+
+        // Handle back/forward browser buttons
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.slice(1) || 'home';
+            const page = document.getElementById(hash);
+            if (page) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                page.classList.add('active');
+                document.querySelector(`[href="#${hash}"]`).classList.add('active');
+            }
+        });
+
+        // Load correct page on initial load
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.slice(1) || 'home';
+            if (hash !== 'home') {
+                const page = document.getElementById(hash);
+                if (page) {
+                    document.getElementById('home').classList.remove('active');
+                    document.querySelector('[href="#home"]').classList.remove('active');
+                    page.classList.add('active');
+                    document.querySelector(`[href="#${hash}"]`).classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
