@@ -292,6 +292,50 @@
             text-decoration: underline;
         }
 
+        /* Add this to your <style> block */
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Creates the side-by-side layout */
+            gap: 3rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .ml-concepts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2x2 grid for the icons */
+            gap: 1.5rem;
+        }
+
+        .concept-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .concept-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .concept-card svg {
+            width: 100%;
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .concept-card p {
+            color: #003262;
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0;
+        }          
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -361,6 +405,12 @@
                 margin-right: 0;
                 padding: 0.5rem 0;
             }
+            
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
         }
     </style>
 </head>
@@ -384,14 +434,56 @@
     <div class="container">
         <div id="home" class="page active">
             <div class="announcement">
-                <strong>📢 Welcome!</strong> Classes begin October 17, 2025. Check Canvas/Google Classroom for Zoom links and materials.
+                <strong>📢 Welcome!</strong> Classes begin October 17, 2025. Join our <a href="https://classroom.google.com/c/ODA0NjA0NDgyMjU1?cjc=ikixfzo4" target="_blank" style="color: #003262; font-weight: bold; text-decoration: underline;">Google Classroom</a> for materials and assignments!
             </div>
-
-            <section class="section">
-                <h2>Course Overview</h2>
-                <p>This 8-week course provides an introduction to Artificial Intelligence (AI) and Machine Learning (ML) at a high-school level, combining foundational intuition and hands-on critical thinking for students interested in machine learning applications. Through engaging visual learning tools and interactive demonstrations, students will explore key topics including data collection, supervised and unsupervised learning, and real-world applications of deep learning.</p>
-            </section>
-
+            <div class="hero-section">
+                <div class="hero-content">
+                    <section class="section" style="margin-top: 0; margin-bottom: 0;">
+                        <h2>Course Overview</h2>
+                        <p>This 8-week course provides an introduction to Artificial Intelligence (AI) and Machine Learning (ML) at a high-school level, combining foundational intuition and hands-on critical thinking for students interested in machine learning applications. Through engaging visual learning tools and interactive demonstrations, students will explore key topics including data collection, supervised and unsupervised learning, and real-world applications of deep learning.</p>
+                    </section>
+                </div>
+                <div class="hero-icons">
+                    <div class="ml-concepts-grid">
+                        <div class="concept-card">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="20" cy="25" r="8" fill="#003262"/><circle cx="20" cy="50" r="8" fill="#003262"/><circle cx="20" cy="75" r="8" fill="#003262"/>
+                                <circle cx="50" cy="37.5" r="8" fill="#FDB515"/><circle cx="50" cy="62.5" r="8" fill="#FDB515"/>
+                                <circle cx="80" cy="50" r="8" fill="#003262"/>
+                                <line x1="28" y1="25" x2="42" y2="37.5" stroke="#cccccc" stroke-width="2"/><line x1="28" y1="50" x2="42" y2="37.5" stroke="#cccccc" stroke-width="2"/><line x1="28" y1="50" x2="42" y2="62.5" stroke="#cccccc" stroke-width="2"/><line x1="28" y1="75" x2="42" y2="62.5" stroke="#cccccc" stroke-width="2"/>
+                                <line x1="58" y1="37.5" x2="72" y2="50" stroke="#cccccc" stroke-width="2"/><line x1="58" y1="62.5" x2="72" y2="50" stroke="#cccccc" stroke-width="2"/>
+                            </svg>
+                            <p>Neural Networks</p>
+                        </div>
+                        <div class="concept-card">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="50" y1="20" x2="30" y2="45" stroke="#003262" stroke-width="3"/><line x1="50" y1="20" x2="70" y2="45" stroke="#003262" stroke-width="3"/>
+                                <line x1="30" y1="55" x2="20" y2="75" stroke="#FDB515" stroke-width="3"/><line x1="30" y1="55" x2="40" y2="75" stroke="#FDB515" stroke-width="3"/>
+                                <circle cx="50" cy="15" r="10" fill="#003262"/>
+                                <circle cx="30" cy="50" r="10" fill="#FDB515"/><circle cx="70" cy="50" r="10" fill="#FDB515"/>
+                                <rect x="15" y="75" width="10" height="10" fill="#003262" rx="2"/><rect x="35" y="75" width="10" height="10" fill="#003262" rx="2"/>
+                            </svg>
+                            <p>Decision Trees</p>
+                        </div>
+                        <div class="concept-card">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="10" y1="85" x2="90" y2="15" stroke="#FDB515" stroke-width="4" stroke-linecap="round"/>
+                                <circle cx="15" cy="80" r="5" fill="#003262"/><circle cx="28" cy="65" r="5" fill="#003262"/><circle cx="40" cy="58" r="5" fill="#003262"/><circle cx="55" cy="42" r="5" fill="#003262"/><circle cx="68" cy="35" r="5" fill="#003262"/><circle cx="82" cy="20" r="5" fill="#003262"/>
+                            </svg>
+                            <p>Linear Regression</p>
+                        </div>
+                        <div class="concept-card">
+                            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="28" cy="28" r="5" fill="#003262"/><circle cx="20" cy="40" r="5" fill="#003262"/><circle cx="40" cy="35" r="5" fill="#003262"/>
+                                <circle cx="72" cy="65" r="5" fill="#FDB515"/><circle cx="80" cy="78" r="5" fill="#FDB515"/><circle cx="65" cy="80" r="5" fill="#FDB515"/>
+                                <circle cx="68" cy="25" r="5" fill="#FDB515"/><circle cx="82" cy="30" r="5" fill="#FDB515"/><circle cx="75" cy="40" r="5" fill="#FDB515"/>
+                                <circle cx="30" cy="70" r="5" fill="#003262"/><circle cx="22" cy="82" r="5" fill="#003262"/><circle cx="42" cy="78" r="5" fill="#003262"/>
+                            </svg>
+                            <p>Clustering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="info-grid">
                 <div class="info-card">
                     <h3>📅 Course Information</h3>
@@ -629,8 +721,7 @@
                 <div class="info-card" style="margin: 1rem 0;">
                     <h3>📚 Online Platforms</h3>
                     <ul>
-                        <li><a href="#">Canvas</a> - Submit homework and access materials</li>
-                        <li><a href="#">Google Classroom</a> - Alternative submission platform</li>
+                        <li><a href="#">Google Classroom</a> - Main submission platform</li>
                         <li><a href="#">Zoom Links</a> - Virtual office hours and discussions</li>
                     </ul>
                 </div>
