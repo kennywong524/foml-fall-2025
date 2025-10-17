@@ -208,6 +208,79 @@
             border-radius: 4px;
         }
 
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .staff-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .staff-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #FDB515;
+        }
+
+        .staff-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .staff-info h4 {
+            color: #003262;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .staff-role {
+            color: #FDB515;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .staff-bio {
+            color: #555;
+            line-height: 1.6;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .staff-contact {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .staff-contact a {
+            color: #003262;
+            text-decoration: none;
+        }
+
+        .staff-contact a:hover {
+            color: #FDB515;
+            text-decoration: underline;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 1.8rem;
@@ -223,6 +296,10 @@
             
             .lecture-table {
                 font-size: 0.9rem;
+            }
+
+            .staff-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -260,9 +337,9 @@
                 <div class="info-card">
                     <h3>📅 Course Information</h3>
                     <ul>
-                        <li><strong>Time:</strong> Fridays (Oct 10 - Dec 5, 2025)</li>
+                        <li><strong>Time:</strong> Fridays (Oct 17 - Dec 5, 2025)</li>
                         <li><strong>Location:</strong> 2150 Shattuck Ave., Berkeley, CA 94704</li>
-                        <li><strong>Checkout:</strong> 5:20 - 5:40 PM</li>
+                        <li><strong>Checkout:</strong> 4:00 - 6:00 PM</li>
                         <li><strong>Prerequisites:</strong> Pre-Calculus, Geometry (Calculus AB helpful but not required)</li>
                     </ul>
                 </div>
@@ -332,7 +409,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>1</strong><br>Oct 10</td>
+                            <td><strong>1</strong><br>Oct 17</td>
                             <td>
                                 <strong>Introduction – Goals, Data & Decision Making</strong><br>
                                 <small>Lecture: Intro to ML, course goals<br>
@@ -346,7 +423,7 @@
                             <td>Discussion post & Regression HW</td>
                         </tr>
                         <tr>
-                            <td><strong>2</strong><br>Oct 17</td>
+                            <td><strong>2</strong><br>Oct 24</td>
                             <td>
                                 <strong>Classification I – Binary & Linear Classifiers</strong><br>
                                 <small>Lecture: Binary classification, linear classifiers<br>
@@ -360,7 +437,7 @@
                             <td>Build your own Decision Tree(s)</td>
                         </tr>
                         <tr>
-                            <td><strong>3</strong><br>Oct 24</td>
+                            <td><strong>3</strong><br>Oct 31</td>
                             <td>
                                 <strong>Classification II – Neural Networks & ReLU</strong><br>
                                 <small>Lecture: Neural Networks, ReLU activation<br>
@@ -374,7 +451,7 @@
                             <td>Compare NNs to Decision Trees</td>
                         </tr>
                         <tr>
-                            <td><strong>4</strong><br>Oct 31</td>
+                            <td><strong>4</strong><br>Nov 7</td>
                             <td>
                                 <strong>Linear Regression – Setup & Limitations</strong><br>
                                 <small>Lecture: Linear regression setup<br>
@@ -388,7 +465,7 @@
                             <td>Analyze results using Desmos</td>
                         </tr>
                         <tr>
-                            <td><strong>5</strong><br>Nov 7</td>
+                            <td><strong>5</strong><br>Nov 14</td>
                             <td>
                                 <strong>Clustering – Unsupervised Learning</strong><br>
                                 <small>Lecture: Clustering basics<br>
@@ -402,7 +479,7 @@
                             <td>Clustering Labubu's</td>
                         </tr>
                         <tr>
-                            <td><strong>6</strong><br>Nov 14</td>
+                            <td><strong>6</strong><br>Nov 21</td>
                             <td>
                                 <strong>Guest Lecture / Fun Topic</strong><br>
                                 <small>Special session with guest speaker</small>
@@ -415,7 +492,7 @@
                             <td>Work on project</td>
                         </tr>
                         <tr>
-                            <td><strong>7</strong><br>Nov 21</td>
+                            <td><strong>7</strong><br>Dec 5</td>
                             <td>
                                 <strong>ML in Context – Degrees, Ethics & Safety</strong><br>
                                 <small>Lecture: ML degrees and careers<br>
@@ -429,7 +506,7 @@
                             <td>Continue project (Jailbreaking GPT)</td>
                         </tr>
                         <tr>
-                            <td><strong>8</strong><br>Dec 5</td>
+                            <td><strong>8</strong><br>Dec 12</td>
                             <td>
                                 <strong>Project Presentations / LLMs</strong><br>
                                 <small>Lecture: Project presentations<br>
@@ -518,39 +595,77 @@
         <div id="staff" class="page">
             <section class="section">
                 <h2>Course Staff</h2>
-                
-                <div class="info-grid">
-                    <div class="info-card">
-                        <h3>Lecture/Discussion Instructors</h3>
-                        <ul>
-                            <li>Andrew Chan</li>
-                            <li>Kenny Wongchamcharoen</li>
-                        </ul>
+                <p style="margin-bottom: 2rem;">Meet the team behind Foundations of Machine Learning!</p>
+
+                                <h3 style="color: #003262; margin-top: 3rem; margin-bottom: 1rem;">Lecture & Discussion Instructors</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-image">
+                            <img src="https://via.placeholder.com/200x200?text=Kenny" alt="Kenny Wongchamcharoen">
+                        </div>
+                        <div class="staff-info">
+                            <h4>Kenny Wongchamcharoen</h4>
+                            <p class="staff-role">Lecture/Discussion Instructor</p>
+                            <p class="staff-bio">Add bio here - your major, year, why you love ML, what you're excited to teach, hobbies, favorite ML application, etc.</p>
+                            <p class="staff-contact"><strong>Email:</strong> <a href="mailto:kenny@example.com">kenny@example.com</a></p>
+                            <p class="staff-contact"><strong>Office Hours:</strong> TBA</p>
+                        </div>
                     </div>
 
-                    <div class="info-card">
-                        <h3>Project Instructor</h3>
-                        <ul>
-                            <li>Samantha Lee</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card">
-                        <h3>Faculty Advisor</h3>
-                        <ul>
-                            <li><a href="mailto:kerger@berkeley.edu">kerger@berkeley.edu</a></li>
-                        </ul>
+                    <div class="staff-card">
+                        <div class="staff-image">
+                            <img src="https://via.placeholder.com/200x200?text=Andrew" alt="Andrew Chan">
+                        </div>
+                        <div class="staff-info">
+                            <h4>Andrew Chan</h4>
+                            <p class="staff-role">Lecture/Discussion Instructor</p>
+                            <p class="staff-bio">Add bio here - your major, year, why you love ML, what you're excited to teach, hobbies, favorite ML application, etc.</p>
+                            <p class="staff-contact"><strong>Email:</strong> <a href="mailto:andrew@example.com">andrew@example.com</a></p>
+                            <p class="staff-contact"><strong>Office Hours:</strong> TBA</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="important" style="margin-top: 2rem;">
-                    <strong>📧 Contact Policy:</strong> Please contact the Lecture/Discussion/Project Instructors for any course-related questions.
+                <h3 style="color: #003262; margin-top: 3rem; margin-bottom: 1rem;">Project Instructor</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-image">
+                            <img src="https://via.placeholder.com/200x200?text=Samantha" alt="Samantha Lee">
+                        </div>
+                        <div class="staff-info">
+                            <h4>Samantha Lee</h4>
+                            <p class="staff-role">Project Instructor</p>
+                            <p class="staff-bio">Add bio here - your major, year, project experience, what makes a great ML project, hobbies, etc.</p>
+                            <p class="staff-contact"><strong>Email:</strong> <a href="mailto:samantha@example.com">samantha@example.com</a></p>
+                            <p class="staff-contact"><strong>Office Hours:</strong> TBA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #003262; margin-top: 2rem; margin-bottom: 1rem;">Faculty Advisor</h3>
+                <div class="staff-grid">
+                    <div class="staff-card">
+                        <div class="staff-image">
+                            <img src="https://via.placeholder.com/200x200?text=Phillip" alt="Phillip Kerger">
+                        </div>
+                        <div class="staff-info">
+                            <h4>Phillip Kerger</h4>
+                            <p class="staff-role">Faculty Advisor</p>
+                            <p class="staff-bio">Add bio here - research interests, background, fun facts, etc.</p>
+                            <p class="staff-contact"><strong>Email:</strong> <a href="mailto:kerger@berkeley.edu">kerger@berkeley.edu</a></p>
+                            <p class="staff-contact"><strong>Office Hours:</strong> TBA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="important" style="margin-top: 3rem;">
+                    <strong>📧 Contact Policy:</strong> Please contact the Lecture/Discussion/Project Instructors for any course-related questions. We're here to help!
                 </div>
 
                 <div class="info-card" style="margin-top: 2rem;">
                     <h3>⏰ Office Hours</h3>
-                    <p>TBA - Will be posted on Canvas/Google Classroom</p>
-                    <p style="margin-top: 1rem;">Join your instructors and peers to discuss course material, ask questions, or just chat! Even if you don't have questions, feel free to join and listen in.</p>
+                    <p>Office hours will be posted on Canvas/Google Classroom. Zoom links will be provided there.</p>
+                    <p style="margin-top: 1rem;">Join your instructors and peers to discuss course material, ask questions, or just chat! Even if you don't have questions, feel free to join and listen in. Office hours are a great way to get to know your instructors and classmates.</p>
                 </div>
             </section>
         </div>
