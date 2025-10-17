@@ -252,12 +252,12 @@
 
         .staff-name-link {
             color: #003262;           /* Berkeley blue color */
-            text-decoration: none;     /* No underline by default */
-            transition: color 0.2s;    /* Smooth color change */
+            text-decoration: none;      /* No underline by default */
+            transition: color 0.2s;     /* Smooth color change */
         }
 
         .staff-name-link:hover {
-            color: #FDB515;            /* Changes to Berkeley gold when hovering */
+            color: #FDB515;             /* Changes to Berkeley gold when hovering */
             text-decoration: underline; /* Adds underline on hover */
         }
 
@@ -296,21 +296,70 @@
             .header h1 {
                 font-size: 1.8rem;
             }
-            
+           
             .nav-content {
                 flex-direction: column;
             }
-            
+           
             .info-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .lecture-table {
-                font-size: 0.9rem;
-            }
-
+           
             .staff-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Mobile-friendly table styles */
+            .lecture-table {
+                box-shadow: none;
+            }
+
+            .lecture-table thead {
+                display: none; /* Hide table headers on mobile */
+            }
+
+            .lecture-table, .lecture-table tbody, .lecture-table tr, .lecture-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .lecture-table tr {
+                margin-bottom: 1.5rem;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+                overflow: hidden;
+            }
+
+            .lecture-table td {
+                padding-left: 50%;
+                position: relative;
+                text-align: right;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .lecture-table td:last-child {
+                border-bottom: none;
+            }
+
+            .lecture-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                width: 45%;
+                text-align: left;
+                font-weight: 600;
+                color: #003262;
+            }
+            
+            .lecture-table .resources-links {
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            
+            .lecture-table .resources-links a {
+                margin-right: 0;
+                padding: 0.5rem 0;
             }
         }
     </style>
@@ -333,7 +382,6 @@
     </nav>
 
     <div class="container">
-        <!-- HOME PAGE -->
         <div id="home" class="page active">
             <div class="announcement">
                 <strong>📢 Welcome!</strong> Classes begin October 17, 2025. Check Canvas/Google Classroom for Zoom links and materials.
@@ -403,12 +451,11 @@
             </div>
         </div>
 
-        <!-- LECTURES PAGE -->
         <div id="lectures" class="page">
             <section class="section">
                 <h2>Weekly Schedule</h2>
                 <p>All lectures are in-person. Attendance at all sessions is required for certificate completion.</p>
-                
+               
                 <table class="lecture-table">
                     <thead>
                         <tr>
@@ -420,115 +467,131 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>1</strong><br>Oct 17</td>
-                            <td>
+                            <td data-label="Week"><strong>1</strong><br>Oct 17</td>
+                            <td data-label="Topic">
                                 <strong>Introduction – Goals, Data & Decision Making</strong><br>
                                 <small>Lecture: Intro to ML, course goals<br>
                                 Discussion: Math Review, "What can we do with lines?"</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Discussion post & Regression HW</td>
+                            <td data-label="Homework">Discussion post & Regression HW</td>
                         </tr>
                         <tr>
-                            <td><strong>2</strong><br>Oct 24</td>
-                            <td>
+                            <td data-label="Week"><strong>2</strong><br>Oct 24</td>
+                            <td data-label="Topic">
                                 <strong>Classification I – Binary & Linear Classifiers</strong><br>
                                 <small>Lecture: Binary classification, linear classifiers<br>
                                 Discussion: Decision Trees & Multiclass Classification</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Build your own Decision Tree(s)</td>
+                            <td data-label="Homework">Build your own Decision Tree(s)</td>
                         </tr>
                         <tr>
-                            <td><strong>3</strong><br>Oct 31</td>
-                            <td>
+                            <td data-label="Week"><strong>3</strong><br>Oct 31</td>
+                            <td data-label="Topic">
                                 <strong>Classification II – Neural Networks & ReLU</strong><br>
                                 <small>Lecture: Neural Networks, ReLU activation<br>
                                 Discussion: Model building, feature selection</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Compare NNs to Decision Trees</td>
+                            <td data-label="Homework">Compare NNs to Decision Trees</td>
                         </tr>
                         <tr>
-                            <td><strong>4</strong><br>Nov 7</td>
-                            <td>
+                            <td data-label="Week"><strong>4</strong><br>Nov 7</td>
+                            <td data-label="Topic">
                                 <strong>Linear Regression – Setup & Limitations</strong><br>
                                 <small>Lecture: Linear regression setup<br>
                                 Discussion: Overfitting and Loss Functions</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Analyze results using Desmos</td>
+                            <td data-label="Homework">Analyze results using Desmos</td>
                         </tr>
                         <tr>
-                            <td><strong>5</strong><br>Nov 14</td>
-                            <td>
+                            <td data-label="Week"><strong>5</strong><br>Nov 14</td>
+                            <td data-label="Topic">
                                 <strong>Clustering – Unsupervised Learning</strong><br>
                                 <small>Lecture: Clustering basics<br>
                                 Discussion: Project Specs review</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Clustering Labubu's</td>
+                            <td data-label="Homework">Clustering Labubu's</td>
                         </tr>
                         <tr>
-                            <td><strong>6</strong><br>Nov 21</td>
-                            <td>
+                            <td data-label="Week"><strong>6</strong><br>Nov 21</td>
+                            <td data-label="Topic">
                                 <strong>Guest Lecture / Fun Topic</strong><br>
                                 <small>Special session with guest speaker</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Work on project</td>
+                            <td data-label="Homework">Work on project</td>
                         </tr>
                         <tr>
-                            <td><strong>7</strong><br>Dec 5</td>
-                            <td>
+                            <td data-label="Week"><strong>7</strong><br>Dec 5</td>
+                            <td data-label="Topic">
                                 <strong>ML in Context – Degrees, Ethics & Safety</strong><br>
                                 <small>Lecture: ML degrees and careers<br>
                                 Discussion: Ethics, alignment, deepfakes</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Continue project (Jailbreaking GPT)</td>
+                            <td data-label="Homework">Continue project (Jailbreaking GPT)</td>
                         </tr>
                         <tr>
-                            <td><strong>8</strong><br>Dec 12</td>
-                            <td>
+                            <td data-label="Week"><strong>8</strong><br>Dec 12</td>
+                            <td data-label="Topic">
                                 <strong>Project Presentations / LLMs</strong><br>
                                 <small>Lecture: Project presentations<br>
                                 Discussion: How to make use of ChatGPT?</small>
                             </td>
-                            <td class="resources-links">
-                                <a href="#">Slides</a>
-                                <a href="#">Notes</a>
-                                <a href="#">Recording</a>
+                            <td data-label="Materials">
+                                <div class="resources-links">
+                                    <a href="#">Slides</a>
+                                    <a href="#">Notes</a>
+                                    <a href="#">Recording</a>
+                                </div>
                             </td>
-                            <td>Done! 🎉</td>
+                            <td data-label="Homework">Done! 🎉</td>
                         </tr>
                     </tbody>
                 </table>
@@ -559,11 +622,10 @@
             </section>
         </div>
 
-        <!-- RESOURCES PAGE -->
         <div id="resources" class="page">
             <section class="section">
                 <h2>Course Resources</h2>
-                
+               
                 <div class="info-card" style="margin: 1rem 0;">
                     <h3>📚 Online Platforms</h3>
                     <ul>
@@ -602,7 +664,6 @@
             </section>
         </div>
 
-        <!-- STAFF PAGE -->
         <div id="staff" class="page">
             <section class="section">
                 <h2>Course Staff</h2>
@@ -692,17 +753,17 @@
             // Hide all pages
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-            
+           
             // Remove active class from all nav links
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
-            
+           
             // Show selected page
             document.getElementById(pageId).classList.add('active');
-            
+           
             // Add active class to clicked nav link
             event.target.classList.add('active');
-            
+           
             // Update URL hash without scrolling
             history.pushState(null, null, '#' + pageId);
         }
