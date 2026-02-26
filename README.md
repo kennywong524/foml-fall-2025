@@ -1,2 +1,2 @@
-# foml-fall-2025
-Foundations of Machine Learning (FoML) Fall '25 Course Website
+# foml-course-website
+Foundations of Machine Learning (FoML) Course Website offered by UC Berkeley IEOR
