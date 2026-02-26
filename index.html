@@ -424,10 +424,10 @@
 
     <nav class="nav">
         <div class="nav-content">
-            <a href="#home" class="nav-link active" onclick="showPage('home')">Home</a>
-            <a href="#lectures" class="nav-link" onclick="showPage('lectures')">Lectures</a>
-            <a href="#resources" class="nav-link" onclick="showPage('resources')">Resources</a>
-            <a href="#staff" class="nav-link" onclick="showPage('staff')">Staff</a>
+            <a href="#home" class="nav-link active" onclick="showPage('home', this); return false;">Home</a>
+            <a href="#lectures" class="nav-link" onclick="showPage('lectures', this); return false;">Lectures</a>
+            <a href="#resources" class="nav-link" onclick="showPage('resources', this); return false;">Resources</a>
+            <a href="#staff" class="nav-link" onclick="showPage('staff', this); return false;">Staff</a>
         </div>
     </nav>
 
@@ -836,24 +836,41 @@
         <p>TBA (Berkeley Campus)</p>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-           
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => link.classList.remove('active'));
-           
+    <script>
+        function showPage(pageId, el) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            event.target.classList.add('active');
+            if (el) el.classList.add('active');
             history.pushState(null, null, '#' + pageId);
         }
 
-        window.addEventListener('hashchange', function() {
+        window.addEventListener('popstate', function() {
             const hash = window.location.hash.slice(1) || 'home';
             const page = document.getElementById(hash);
             if (page) {
                 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 page.classList.add('active');
-                document.querySelector(`[href="#${hash}"
+                const link = document.querySelector('.nav-link[href="#' + hash + '"]');
+                if (link) link.classList.add('active');
+            }
+        });
+
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.slice(1) || 'home';
+            if (hash !== 'home') {
+                const page = document.getElementById(hash);
+                if (page) {
+                    document.getElementById('home').classList.remove('active');
+                    const homeLink = document.querySelector('.nav-link[href="#home"]');
+                    if (homeLink) homeLink.classList.remove('active');
+                    page.classList.add('active');
+                    const link = document.querySelector('.nav-link[href="#' + hash + '"]');
+                    if (link) link.classList.add('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
